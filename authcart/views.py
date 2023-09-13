@@ -13,12 +13,12 @@ def signup(request):
         confirm_password=request.POST['pass2']
         if password!=confirm_password:
             messages.warning(request,"Password is Not Matching")
-            return render(request,'signup.html')                   
+            return render(request,'authentication/signup.html')                   
         try:
             if User.objects.get(username=email):
                 # return HttpResponse("email already exist")
                 messages.info(request,"Email is Taken")
-                return render(request,'signup.html')
+                return render(request,'authentication/signup.html')
         except Exception as identifier:
             pass
         user = User.objects.create_user(email,email,password)
